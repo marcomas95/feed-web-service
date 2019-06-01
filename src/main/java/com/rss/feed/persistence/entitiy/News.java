@@ -1,9 +1,13 @@
 package com.rss.feed.persistence.entitiy;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "news")
@@ -25,9 +29,10 @@ public class News {
 	private String enclosure;
 	
 	@Column(name = "pubDate")
-	private String pubDate;
+	@Temporal(TemporalType.DATE)
+	private Date pubDate;
 
-	public News(String guid, String title, String link, String description, String enclosure, String pubDate) {
+	public News(String guid, String title, String link, String description, String enclosure, Date pubDate) {
 		this.guid = guid;
 		this.title = title;
 		this.link = link;
@@ -76,11 +81,11 @@ public class News {
 		this.enclosure = enclosure;
 	}
 
-	public String getPubDate() {
+	public Date getPubDate() {
 		return pubDate;
 	}
 
-	public void setPubDate(String pubDate) {
+	public void setPubDate(Date pubDate) {
 		this.pubDate = pubDate;
 	}
 
