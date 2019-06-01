@@ -1,6 +1,6 @@
 package com.rss.feed.persistence.service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.rss.feed.persistence.entitiy.News;
