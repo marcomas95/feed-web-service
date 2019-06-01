@@ -23,7 +23,7 @@ public class News {
 	@Column(name = "link")
 	private String link;
 	
-	@Column(name = "description")
+	@Column(name = "description", length = 10000)
 	private String description;
 	
 	@Column(name = "enclosure")
@@ -33,6 +33,8 @@ public class News {
 	@Temporal(TemporalType.DATE)
 	private Date pubDate;
 
+	public News() {};
+	
 	public News(String guid, String title, String link, String description, String enclosure, Date pubDate) {
 		this.guid = guid;
 		this.title = title;
