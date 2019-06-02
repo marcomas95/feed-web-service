@@ -1,5 +1,7 @@
 package com.rss.feed.persistence.entitiy;
 
+import java.util.Date;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -7,6 +9,11 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.rss.feed.utility.DateTimeAdapter;
 
 @Entity
 @Table(name = "news")
@@ -28,13 +35,15 @@ public class News {
 	@AttributeOverrides(value = { @AttributeOverride(name = "url", column = @Column(name = "image_url")) })
 	private Enclosure enclosure;
 
+	
 	@Column(name = "pub_date")
-	private String pubDate;
+	@Temporal(TemporalType.DATE)
+	private Date pubDate;
 
 	public News() {
 	};
 
-	public News(String guid, String title, String link, String description, Enclosure enclosure, String pubDate) {
+	public News(String guid, String title, String link, String description, Enclosure enclosure, Date pubDate) {
 		this.guid = guid;
 		this.title = title;
 		this.link = link;
@@ -83,11 +92,12 @@ public class News {
 		this.enclosure = enclosure;
 	}
 
-	public String getPubDate() {
-		return pubDate;
+	@XmlJavaTypeAdapter(value=DateTimeAdapter.class)
+	public Date getPubDate() {
+		return this.pubDate;
 	}
 
-	public void setPubDate(String pubDate) {
+	public void setPubDate(Date pubDate) {
 		this.pubDate = pubDate;
 	}
 
