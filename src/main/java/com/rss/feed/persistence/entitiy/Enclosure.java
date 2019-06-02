@@ -5,6 +5,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 
+/**
+ * Class used during the unmarshalling that will contain the image
+ * @author MarcoMas
+ *
+ */
 @Embeddable
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Enclosure {

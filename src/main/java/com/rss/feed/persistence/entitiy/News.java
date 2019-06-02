@@ -15,6 +15,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.rss.feed.utility.DateTimeAdapter;
 
+/**
+ * Base entity for the news
+ * @author MarcoMas
+ *
+ */
 @Entity
 @Table(name = "news")
 public class News {
@@ -37,7 +42,7 @@ public class News {
 
 	
 	@Column(name = "pub_date")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date pubDate;
 
 	public News() {

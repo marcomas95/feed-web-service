@@ -15,12 +15,6 @@ import com.rss.feed.persistence.entitiy.News;
 @Repository
 public interface NewsRepository extends CrudRepository<News, String> {
 	
-	/**
-	 * Find all news published on a date
-	 * @param pubDate Publication date
-	 * @return List of news
-	 */
-	List<News> findAllByPubDate(Date pubDate);
 	
 	/**
 	 * Find all news published between two dates in input

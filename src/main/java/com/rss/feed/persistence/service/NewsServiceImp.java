@@ -29,10 +29,6 @@ public class NewsServiceImp implements NewsService {
 		return this.newsRepo.findAll();
 	}
 
-	@Override
-	public List<News> getNewsByPubDate(Date pubDate) {
-		return this.newsRepo.findAllByPubDate(pubDate);
-	}
 
 	@Override
 	public List<News> getNewsBetweenDates(Date pubDateStart, Date pubDateEnd) {

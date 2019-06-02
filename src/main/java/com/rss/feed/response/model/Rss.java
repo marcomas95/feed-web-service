@@ -2,6 +2,11 @@ package com.rss.feed.response.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Class used to unmarshall response, base XML root
+ * @author MarcoMas
+ *
+ */
 @XmlRootElement(name="rss")
 public class Rss
 {

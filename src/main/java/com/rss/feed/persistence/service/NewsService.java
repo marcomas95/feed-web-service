@@ -23,11 +23,6 @@ public interface NewsService {
 	 */
 	public List<News> getAllNews();
 	
-	/**
-	 * Retrieve all the news published in a certain date
-	 * @return List of news
-	 */
-	public List<News> getNewsByPubDate(Date pubDate);
 	
 	/**
 	 * Retrieve all the news published between the two dates in input

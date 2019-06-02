@@ -17,15 +17,32 @@ import com.rss.feed.persistence.entitiy.News;
 import com.rss.feed.persistence.service.NewsService;
 import com.rss.feed.response.model.Rss;
 
+/**
+ * Batch that insert the news
+ * 
+ * @author MarcoMas
+ *
+ */
 @Component
 public class NewsFinderBatch {
 
+	/**
+	 * List of uris to call
+	 */
 	@Value("#{'${urisList}'.split(',')}")
 	private List<String> urisList;
 
+	/**
+	 * News service to execute queries
+	 */
 	@Autowired
 	private NewsService newsService;
 
+	/**
+	 * Scheduled method based on the property pollingCron that iterate on the
+	 * uriList and call the getNews method. The list returned by this last method
+	 * will be inserted in the DB
+	 */
 	@Scheduled(cron = "${pollingCron}")
 	public void insertNews() {
 		System.out.println("Started batch to find news...");
@@ -39,6 +56,12 @@ public class NewsFinderBatch {
 
 	}
 
+	/**
+	 * Method that makes the call and get the news list response
+	 * 
+	 * @param uri Link where to fetch date
+	 * @return List of news
+	 */
 	private List<News> getNews(String uri) {
 		try {
 			URL obj = new URL(uri);
