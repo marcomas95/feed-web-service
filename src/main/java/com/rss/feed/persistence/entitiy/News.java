@@ -1,14 +1,12 @@
 package com.rss.feed.persistence.entitiy;
 
-
-import java.util.Date;
-
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "news")
@@ -16,26 +14,27 @@ public class News {
 	@Id
 	@Column(name = "guid")
 	private String guid;
-	
+
 	@Column(name = "title")
 	private String title;
-	
+
 	@Column(name = "link")
 	private String link;
-	
+
 	@Column(name = "description", length = 10000)
 	private String description;
-	
-	@Column(name = "enclosure")
-	private String enclosure;
-	
-	@Column(name = "pubDate")
-	@Temporal(TemporalType.DATE)
-	private Date pubDate;
 
-	public News() {};
-	
-	public News(String guid, String title, String link, String description, String enclosure, Date pubDate) {
+	@Embedded
+	@AttributeOverrides(value = { @AttributeOverride(name = "url", column = @Column(name = "image_url")) })
+	private Enclosure enclosure;
+
+	@Column(name = "pub_date")
+	private String pubDate;
+
+	public News() {
+	};
+
+	public News(String guid, String title, String link, String description, Enclosure enclosure, String pubDate) {
 		this.guid = guid;
 		this.title = title;
 		this.link = link;
@@ -76,19 +75,19 @@ public class News {
 		this.description = description;
 	}
 
-	public String getEnclosure() {
+	public Enclosure getEnclosure() {
 		return enclosure;
 	}
 
-	public void setEnclosure(String enclosure) {
+	public void setEnclosure(Enclosure enclosure) {
 		this.enclosure = enclosure;
 	}
 
-	public Date getPubDate() {
+	public String getPubDate() {
 		return pubDate;
 	}
 
-	public void setPubDate(Date pubDate) {
+	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
 	}
 
